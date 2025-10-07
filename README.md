@@ -1,160 +1,88 @@
-# Auto Scout Price EDA and Predictions 🚗🔍
+🏎 Car Price Prediction
 
-Welcome! This project involves Exploratory Data Analysis (EDA) and various regression techniques to predict car prices using the Auto Scout dataset.
+📘 Project Overview
 
-![Auto Scout](https://github.com/Fatma-Nur-Azman/Machine_Learning_Projects_ML/blob/main/ML_02_Auto_Scout_Car_Price_Prediction/image.png)
+This project focuses on predicting car prices using the Auto Scout dataset.
+Through comprehensive data preprocessing, visualization, and machine learning modeling, it explores the relationships between various car features and their corresponding market prices.
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Dataset](#dataset)
-3. [Exploratory Data Analysis](#exploratory-data-analysis)
-    - [Understanding The Data](#understanding-the-data)
-    - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
-    - [Detection of Outliers](#detection-of-outliers)
-    - [Correlation](#correlation)
-    - [Encoding](#encoding)
-    - [Feature Selection (ANOVA)](#feature-selection-anova)
-4. [Models](#models)
-    - [Linear Regression Model](#linear-regression-model)
-    - [Ridge Regression Model](#ridge-regression-model)
-    - [Lasso Regression Model](#lasso-regression-model)
-    - [Elastic-Net Regression Model](#elastic-net-regression-model)
-    - [Lasso Regression Model (Without Outliers)](#lasso-regression-model-without-outliers)
-5. [Feature Importance](#feature-importance)
-6. [Customer Regression Model](#customer-regression-model)
-7. [Compare Models Performance](#compare-models-performance)
-8. [Final Model and Model Deployment](#final-model-and-model-deployment)
-9. [Prediction](#prediction)
-10. [Conclusion](#conclusion)
-## Introduction
+The project compares Linear Regression, Ridge Regression, and Lasso Regression models to identify the best-performing one for price prediction.
 
-This project provides an in-depth analysis of car prices using a dataset from Auto Scout. The analysis includes data cleaning, visualization, and applying different regression models to predict car prices.
+---
 
-## Dataset
+🧠 Objectives
 
-The dataset used in this project is `final_scout_not_dummy.csv`, which contains various features related to cars listed on Auto Scout.
+Analyze and preprocess car listing data from Auto Scout.
 
-## Exploratory Data Analysis
+Build and evaluate regression models for predicting prices.
 
-The EDA section of the project involves:
-- Data Cleaning: Handling missing values, outliers, and data transformations.
-- Visualization: Plotting various features to understand their distribution and relationships.
-- Statistical Analysis: Summarizing data to extract meaningful insights.
+Compare model performance and interpret key predictive features.
 
-### Understanding The Data
-
-Understanding the basic features and distributions in the dataset.
-
-### Exploratory Data Analysis (EDA)
-
-Initial exploration of the dataset and preliminary observations.
-
-### Detection of Outliers
-
-Identification and management of outliers in the dataset.
-
-### Correlation
-
-Examining relationships between features.
-
-### Encoding
-
-Converting categorical data into numerical data.
-
-### Feature Selection (ANOVA)
-
-Selecting important features using ANOVA method.
-
-## Models
-
-Different regression models applied to predict car prices:
-- **Linear Regression Model**
-- **Ridge Regression Model**
-- **Lasso Regression Model**
-- **Elastic-Net Regression Model**
-- **Lasso Regression Model (Without Outliers)**
-## Feature Importance
-
-Ranking the importance of features used in the models.
-
-## Customer Regression Model
-
-Creating a custom regression model for specific needs.
-
-## Compare Models Performance
-
-Comparing the performance of different models.
-
-## Final Model and Model Deployment
-
-Selecting and deploying the best model.
-
-## Prediction
-
-Making price predictions with the selected model.
-
-## Conclusion
-
-Evaluating the overall results of the project.
+Visualize relationships between vehicle attributes and target price.
 
 
-## 📦 Installation
+---
 
-To get started with this project, follow these steps:
+⚙ Technologies Used
 
- **Clone the repository:**
- 
-    ```bash
-     git clone https://github.com/Fatma-Nur-Azman/Machine_Learning_Projects_ML.git
-     cd Machine_Learning_Projects_ML/ML_02_Auto_Scout_Car_Price(Linear-Ridge-Lasso-Elastc)
+Python 🐍
 
-    ```
+Pandas, NumPy, Matplotlib, Seaborn
 
-## 🚀 Usage
+Scikit-learn (sklearn)
 
-To explore data:
+Jupyter Notebook
 
-1. **Open the Jupyter Notebook:**
-    ```bash
-    jupyter notebook Auto_Scout_Price_EDA_Predictions(Linear_Ridge_Lasso_Regression).ipynb
-    ```
+Auto Scout Dataset (Kaggle source)
 
-2. **Run the cells in the notebook to perform the analysis.**
 
-## About Me
 
-Hello! I'm Fatma NUr AZMAN, a data analytics and data science enthusiast.
+---
 
-📊 Data Detective: Getting lost in data and turning it into meaningful insights is my hobby. Playing with data and deciphering its language is my superpower!
+🧩 Models Implemented
 
-☕ Coffee Lover: I always have a cup of coffee by my side while analyzing data. Good coffee fuels my creativity.
+Model	Description	Regularization Type	Evaluation Metric
 
-🎵 Music Enthusiast: Light jazz music playing in the background keeps me motivated while analyzing data. Music helps me stay focused and productive.
+Linear Regression	Baseline model for regression	None	R², MAE, RMSE
+Ridge Regression	L2 regularization to reduce overfitting	L2	R², MAE, RMSE
+Lasso Regression	L1 regularization for feature selection	L1	R², MAE, RMSE
 
-🧩 Puzzle Master: I solve puzzles to keep my mind active. This helps improve my analytical thinking skills.
 
-📧 Contact
 
-- [LinkedIn](https://www.linkedin.com/in/fatma-nur-azman/)
-- [GitHub](https://github.com/Fatma-Nur-Azman)
-- [Website](https://fatmanurazman.vercel.app/)
-- [Kaggle](https://www.kaggle.com/fnurazman)
-- [Medium](https://medium.com/@azmanfnur)
-- [Tableau Public](https://public.tableau.com/app/profile/fatma.nur.azman/vizzes)
+---
 
-Are you ready to embark on new journeys in the world of data analytics together? 🚴‍♀️🚴‍♂️
+📊 Key Steps
 
-## 📜 License
+1. Data Exploration (EDA) – Handling missing values, correlation analysis, and visual insights.
 
-This project is licensed under the MIT License - see the `LICENSE` file for details.
 
-## 🤝 Contributing
+2. Feature Engineering – Encoding categorical features and scaling numerical data.
 
-We welcome contributions! If you have suggestions, improvements, or find bugs, feel free to fork the repository and submit a pull request.
 
-## 🌟 Acknowledgements
+3. Model Training – Training and tuning multiple regression models.
 
-- Special thanks to the data providers.
-- Gratitude to the open-source community for providing the tools and resources.
 
-Thank you for visiting our project! We hope you find it insightful and engaging. 👩‍💼
+4. Performance Evaluation – Comparing metrics (R², MAE, RMSE) across all models.
+
+
+5. Model Selection – Selecting the most accurate and generalizable model.
+
+
+
+
+---
+
+📈 Results
+
+Ridge Regression provided the best generalization performance among all models.
+
+Visual analysis confirmed strong correlations between horsepower, mileage, and price.
+
+
+---
+
+👨‍💻 Author
+
+Mohammad Ziaee
+📍 Data Science & Machine Learning Enthusiast
+📫 moha2012zia@gmail.com
+🌐 GitHub Profile
