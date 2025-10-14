@@ -1,88 +1,151 @@
-🏎 Car Price Prediction
+# 🚗 Car Price Prediction
 
-📘 Project Overview
-
-This project focuses on predicting car prices using the Auto Scout dataset.
-Through comprehensive data preprocessing, visualization, and machine learning modeling, it explores the relationships between various car features and their corresponding market prices.
-
-The project compares Linear Regression, Ridge Regression, and Lasso Regression models to identify the best-performing one for price prediction.
+An end‑to‑end **regression** project to predict **used car prices** from tabular attributes (make/model, year, mileage, engine specs, fuel type, transmission, etc.).  
+Includes clean preprocessing pipelines, feature engineering, model training (Linear Regression, Random Forest, XGBoost), and rigorous evaluation (**MAE, RMSE, R², MAPE**).
 
 ---
 
-🧠 Objectives
-
-Analyze and preprocess car listing data from Auto Scout.
-
-Build and evaluate regression models for predicting prices.
-
-Compare model performance and interpret key predictive features.
-
-Visualize relationships between vehicle attributes and target price.
-
+## 📖 Overview
+This repository demonstrates best practices for **tabular regression**:
+- Leakage‑safe pipelines with `ColumnTransformer` + `Pipeline`
+- Robust handling of categorical & numerical features
+- Cross‑validated model selection and error analysis
+- Exportable artifacts for inference
 
 ---
 
-⚙ Technologies Used
+## 🗂️ Dataset
+Typical CSV layout under `data/`:
+```
+data/
+├─ train.csv
+└─ test.csv
+```
+**Columns (examples):** `price`, `make`, `model`, `year`, `mileage`, `engine`, `power`, `fuel`, `transmission`, `owner`, `city`, `features...`
 
-Python 🐍
-
-Pandas, NumPy, Matplotlib, Seaborn
-
-Scikit-learn (sklearn)
-
-Jupyter Notebook
-
-Auto Scout Dataset (Kaggle source)
-
-
+> Ensure target column is named `price` (or update code accordingly). Clean outliers and inconsistent units (e.g., mileage km vs mi).
 
 ---
 
-🧩 Models Implemented
+## 🔧 Preprocessing & Feature Engineering
+- **Imputation**: numeric (median), categorical (most frequent)
+- **Scaling**: Standardize numerical features
+- **Encoding**: One‑hot for categoricals (`handle_unknown="ignore"`)
+- **Domain features**: car **age** (`current_year - year`), log‑price, mileage buckets
+- **Optional**: Target encoding (inside CV), interaction terms
 
-Model	Description	Regularization Type	Evaluation Metric
-
-Linear Regression	Baseline model for regression	None	R², MAE, RMSE
-Ridge Regression	L2 regularization to reduce overfitting	L2	R², MAE, RMSE
-Lasso Regression	L1 regularization for feature selection	L1	R², MAE, RMSE
-
-
-
----
-
-📊 Key Steps
-
-1. Data Exploration (EDA) – Handling missing values, correlation analysis, and visual insights.
-
-
-2. Feature Engineering – Encoding categorical features and scaling numerical data.
-
-
-3. Model Training – Training and tuning multiple regression models.
-
-
-4. Performance Evaluation – Comparing metrics (R², MAE, RMSE) across all models.
-
-
-5. Model Selection – Selecting the most accurate and generalizable model.
-
-
-
+All steps live **inside** `Pipeline` to avoid leakage.
 
 ---
 
-📈 Results
-
-Ridge Regression provided the best generalization performance among all models.
-
-Visual analysis confirmed strong correlations between horsepower, mileage, and price.
-
+## 🧠 Models
+- **Linear Regression / Ridge / Lasso** — fast baselines
+- **Random Forest Regressor** — non‑linear baseline
+- **XGBoost Regressor** — strong tabular learner
+- *(Optional)* LightGBM / CatBoost
 
 ---
 
-👨‍💻 Author
+## 📈 Evaluation
+Primary metrics:
+- **MAE** — median error magnitude
+- **RMSE** — penalizes large errors
+- **R²** — explained variance
+- **MAPE** — relative error (watch for zero/near‑zero prices)
 
-Mohammad Ziaee
-📍 Data Science & Machine Learning Enthusiast
-📫 moha2012zia@gmail.com
-🌐 GitHub Profile
+**Error analysis**:
+- Residual plots vs. mileage/age
+- Feature importance (tree‑based models)
+- Price distribution before/after cleaning
+
+---
+
+## 🧩 Repository Structure (suggested)
+```
+Car-Price-Prediction/
+├─ notebooks/
+│  ├─ 01_eda.ipynb
+│  ├─ 02_training_baselines.ipynb
+│  ├─ 03_error_analysis.ipynb
+├─ src/
+│  ├─ data.py          # loading/splitting; type casting
+│  ├─ features.py      # preprocessors & domain features
+│  ├─ models.py        # model builders (linreg/RF/XGB)
+│  ├─ train.py         # CV + fit
+│  ├─ eval.py          # metrics & plots
+│  └─ infer.py         # single‑row inference
+├─ reports/figures/    # residuals, importances, distributions
+├─ data/               # (gitignored)
+├─ requirements.txt
+├─ .gitignore
+└─ README.md
+```
+
+---
+
+## ⚙️ Setup & Usage
+1) **Clone & install**
+```bash
+git clone https://github.com/ziaee-mohammad/Car-Price-Prediction.git
+cd Car-Price-Prediction
+pip install -r requirements.txt
+```
+
+2) **Run notebooks**
+```bash
+jupyter notebook
+```
+
+3) **(Optional) Scripts**
+```bash
+python -m src.train --model xgboost
+python -m src.eval  --report
+python -m src.infer --json '{"make":"Toyota","model":"Corolla","year":2018,"mileage":65000,"fuel":"Petrol","transmission":"Manual"}'
+```
+
+---
+
+## 📦 Requirements (example)
+```
+pandas
+numpy
+scikit-learn
+xgboost
+matplotlib
+seaborn
+```
+
+---
+
+## ✅ Good Practices
+- Remove duplicates & extreme outliers (e.g., price < 500 or > 200,000 as per market)
+- Normalize free‑text fields (model trims/variants)
+- Use consistent currency; document exchange rate if converted
+- Log‑transform price if heavy‑tailed, and inverse‑transform predictions
+
+---
+
+## 🏷 Tags
+```
+data-science
+machine-learning
+regression
+tabular-data
+feature-engineering
+model-evaluation
+xgboost
+python
+jupyter-notebook
+```
+
+---
+
+## 👤 Author
+**Mohammad Ziaee** — Computer Engineer | AI & Data Science  
+📧 moha2012zia@gmail.com  
+🔗 https://github.com/ziaee-mohammad
+
+---
+
+## 📜 License
+MIT — free to use and adapt with attribution.
